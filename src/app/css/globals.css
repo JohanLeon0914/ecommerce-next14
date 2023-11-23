@@ -1,0 +1,11 @@
+@import "./base.css";
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .headerDiv {
+    @apply bg-bgLight text-gray-500 flex 
+        items-center justify-center p-1.5 rounded-full hover:bg-white 
+        border-[1px] border-gray-200 hover:border-orange-500 duration-200;
+  }
+}
