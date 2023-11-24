@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Products } from "../../types";
+import { Product } from "../../types";
 
 interface StoreState {
-    productData: Products[];
+    productData: Product[];
     userInfo: null | string;
     orderData: [];
 }
@@ -19,7 +19,7 @@ export const shoppingSlice = createSlice({
     reducers: {
         addToCart: (state, action) => {
             const existingProduct = state.productData.find(
-                (item: Products) => item._id === action.payload._id
+                (item: Product) => item._id === action.payload._id
             );
             if (existingProduct) {
                 existingProduct.quantity += action.payload.quantity;
@@ -29,13 +29,13 @@ export const shoppingSlice = createSlice({
         },
         increaseQuantity: (state, action) => {
             const existingProduct = state.productData.find(
-                (item: Products) => item._id === action.payload._id
+                (item: Product) => item._id === action.payload._id
             );
             existingProduct && existingProduct.quantity++;
         },
         decreaseQuantity: (state, action) => {
             const existingProduct = state.productData.find(
-                (item: Products) => item._id === action.payload._id
+                (item: Product) => item._id === action.payload._id
             );
             if (existingProduct?.quantity === 1) {
                 existingProduct.quantity === 1;

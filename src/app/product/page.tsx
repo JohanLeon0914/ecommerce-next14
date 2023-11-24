@@ -1,7 +1,7 @@
 import { getSingleProudct, getTrendingProducts } from "@/helpers";
 import Container from "../components/Container";
 import ProductsData from "../components/ProductsData";
-import { Products } from "../../../types";
+import { Product } from "../../../types";
 import SingleProduct from "../components/SingleProduct";
 
 type Props = {
@@ -21,7 +21,7 @@ const ProductPage = async ({ searchParams }: Props) => {
         <div>
           <p className="text-xl py-1 font-semibold">Tranding Products</p>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-            {trandingProducts?.map((item: Products) => (
+            {trandingProducts?.map((item: Product) => (
               <ProductsData key={item._id} item={item} />
             ))}
           </div>

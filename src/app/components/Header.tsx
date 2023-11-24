@@ -8,16 +8,18 @@ import { AiOutlineUser } from "react-icons/ai";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { Products, StateProps } from "../../../types";
+import { Product, StateProps } from "../../../types";
 import FormattedPrice from "./FormattedPrice";
 import Link from "next/link";
 import { addUser, deleteUser } from "@/redux/shoppingSlice";
+import { useMediaQuery } from "react-responsive";
 
 function Header() {
   const dispatch = useDispatch();
   const { data: session } = useSession();
-  const { productData, orderData } = useSelector((state: StateProps) => state.shopping);
+  const { productData } = useSelector((state: StateProps) => state.shopping);
   const [totalAmount, setTotalAmount] = useState(0);
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
 
   useEffect(() => {
     if (session) {
@@ -35,7 +37,7 @@ function Header() {
 
   useEffect(() => {
     let amt = 0;
-    productData.map((item: Products) => {
+    productData.map((item: Product) => {
       amt += item.price * item.quantity;
       return;
     });
@@ -57,9 +59,16 @@ function Header() {
         </div>
         {/* Login and register */}
         {!session && (
-          <div onClick={() => signIn()} className="headerDiv cursor-pointer">
+          <div
+            onClick={() => signIn()}
+            className={`headerDiv cursor-pointer ${
+              isMobile ? "flex items-center gap-x-1" : ""
+            }`}
+          >
             <AiOutlineUser className="text-2xl" />
-            <p className="text-sm font-semibold">Login/Register</p>
+            {!isMobile && (
+              <p className="text-sm font-semibold">Login/Register</p>
+            )}
           </div>
         )}
 
@@ -78,34 +87,42 @@ function Header() {
         {session && (
           <div
             onClick={() => signOut()}
-            className="headerDiv px-2 gap-x-1 cursor-pointer"
+            className={`headerDiv ${
+              isMobile ? "flex items-center gap-x-1" : "px-2 gap-x-1"
+            } cursor-pointer`}
           >
             <FiLogOut className="text-2xl" />
-            <p className="text-sm font-semibold">Logout</p>
+            {!isMobile && <p className="text-sm font-semibold">Logout</p>}
           </div>
         )}
 
         {/* Cart button */}
-        <Link href={'/cart'}>
+        <Link href="/cart">
           <div
-            className="bg-black hover:bg-slate-950 
-        rounded-full text-slate-100 hover:text-white 
-        flex items-center justify-center gap-x-1 px-3 py-1.5 
-        border-[1px] border-black
-         hover:border-orange-600 duration-200 relative"
+            className={`bg-black hover:bg-slate-950 rounded-full text-slate-100 hover:text-white
+            flex items-center justify-center gap-x-1 px-3 py-1.5 border-[1px] border-black
+            hover:border-orange-600 duration-200 relative ${
+              isMobile ? "flex-col items-center" : ""
+            }`}
           >
             <IoMdCart className="text-xl" />
-            <p className="text-sm font-semibold">
-              <FormattedPrice amount={totalAmount ? totalAmount : 0} />
-            </p>
-            {/* El span es la cantidad de productos dentro del carrito */}
-            <span
-              className="bg-white text-orange-600 rounded-full
-           text-xs font-semibold absolute -right-2 -top-1 w-5 h-5 
-           flex items-center justify-center shadow-xl shadow-black"
-            >
-              {productData ? productData?.length : 0}
-            </span>
+            {isMobile && totalAmount && totalAmount > 9999.99 ? (
+              <p className="text-sm font-semibold">+9999.99$</p>
+            ) : (
+              <>
+                <p className="text-sm font-semibold">
+                  <FormattedPrice amount={totalAmount ? totalAmount : 0} />
+                </p>
+                {/* El span es la cantidad de productos dentro del carrito */}
+                <span
+                  className="bg-white text-orange-600 rounded-full
+                text-xs font-semibold absolute -right-2 -top-1 w-5 h-5 
+                flex items-center justify-center shadow-xl shadow-black"
+                >
+                  {productData ? productData?.length : 0}
+                </span>
+              </>
+            )}
           </div>
         </Link>
       </Container>

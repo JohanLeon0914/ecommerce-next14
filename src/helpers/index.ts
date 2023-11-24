@@ -1,5 +1,5 @@
 import { productData } from "@/constants/data";
-import { Products } from "../../types";
+import { Product } from "../../types";
 
 export const getProducts = async () => {
     const res = await fetch(process.env.API_PRODUCTS!);
@@ -26,7 +26,7 @@ export const calculatePercentage = (oldPrice: any, price: any) => {
   };
   
   export const getSingleProudct = async(_id: number) => {
-    const products:Products[] = await getProducts()
+    const products:Product[] = await getProducts()
     const item = products.find((product) => product._id === _id);
     return item;
   };

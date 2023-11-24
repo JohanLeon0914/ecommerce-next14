@@ -1,4 +1,4 @@
-export interface Products {
+export interface Product {
     _id: number;
     title: string;
     isNew: boolean;
@@ -12,11 +12,11 @@ export interface Products {
   }
   
   export interface ItemProps {
-    item: Products;
+    item: Product;
   }
 
   export interface ProductProps {
-    product: Products
+    product: Product
   }
   
   export interface StateProps {
@@ -24,7 +24,7 @@ export interface Products {
       productData: [];
       userInfo: {};
       orderData: {
-        order: Products[];
+        order: Product[];
       };
     };
   }
