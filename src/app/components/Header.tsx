@@ -20,6 +20,11 @@ function Header() {
   const { productData } = useSelector((state: StateProps) => state.shopping);
   const [totalAmount, setTotalAmount] = useState(0);
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
+  const formattedAmount = new Number(9999.99).toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 2,
+  });
 
   useEffect(() => {
     if (session) {
@@ -107,7 +112,7 @@ function Header() {
           >
             <IoMdCart className="text-xl" />
             {isMobile && totalAmount && totalAmount > 9999.99 ? (
-              <p className="text-sm font-semibold">+9999.99$</p>
+              <p className="text-sm font-semibold">+{formattedAmount}</p>
             ) : (
               <>
                 <p className="text-sm font-semibold">
