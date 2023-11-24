@@ -7,6 +7,9 @@ const nextConfig = {
             "avatars.githubusercontent.com",
             "lh3.googleusercontent.com",
             "fakestoreapi.com",
+            "saposyprincesas.elmundo.es",
+            "st3.depositphotos.com",
+            "i.pinimg.com"
         ],
     },
 }

@@ -1,30 +1,13 @@
-"use client"
 import Container from "./Container";
 import { Product } from "../../../types";
 import SliderCategory from "./SliderCategory";
 import { categories } from "@/constants/data";
-import { useState, useEffect } from 'react';
+import { getProducts } from "@/helpers";
 
-const Products = () => {
-  const [products, setProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
-    // Función para obtener productos
-    const fetchData = async () => {
-      try {
-        // Hacer la solicitud a la API
-        const response = await fetch('https://apimocha.com/ecommerce-nextjs/products');
-        const data = await response.json();
+const Products = async () => {
 
-        // Actualizar el estado con los productos obtenidos
-        setProducts(data);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-
-    fetchData();
-  }, [])
+  const products: Product[] = await getProducts()
 
   const getProductsForCategory = (category: string) => {
     return products.filter((product: Product) => product.category === category);
@@ -43,5 +26,6 @@ const Products = () => {
     </Container>
   );
 };
+
 
 export default Products;
