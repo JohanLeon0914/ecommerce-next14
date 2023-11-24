@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Products, StateProps } from "../../../types";
+import { Product, StateProps } from "../../../types";
 import Image from "next/image";
 import { AiOutlineClose } from "react-icons/ai";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
@@ -18,7 +18,7 @@ const CartItem = () => {
       </div>
       {/* Generate product */}
       <div className="flex flex-col gap-y-2">
-        {productData?.map((item: Products) => (
+        {productData?.map((item: Product) => (
           <div
             key={item._id}
             className="w-full bg-white p-4 flex flex-col md:flex-row items-center justify-between gap-4"
