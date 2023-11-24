@@ -1,12 +1,12 @@
-import { getProducts } from "@/helpers";
 import Container from "./Container";
-import ProductsData from "./ProductsData";
 import { Product } from "../../../types";
-import { categories } from "@/constants/data";
 import SliderCategory from "./SliderCategory";
+import { categories } from "@/constants/data";
+import { getProducts } from "@/helpers";
 
 const Products = async () => {
-  const products = await getProducts();
+
+  const products: Product[] = await getProducts();
 
   const getProductsForCategory = (category: string) => {
     return products.filter((product: Product) => product.category === category);
