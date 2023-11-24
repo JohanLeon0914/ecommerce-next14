@@ -43,6 +43,7 @@ const Banner = () => {
   };
   return (
     <div className="relative">
+      
       <Slider {...settings}>
         <div className="w-full h-full relative">
           <Image
