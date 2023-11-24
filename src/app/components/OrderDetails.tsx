@@ -5,7 +5,7 @@ import Image from "next/image";
 import FormattedPrice from "./FormattedPrice";
 import { resetOrder } from "@/redux/shoppingSlice";
 import Link from "next/link";
-import { Products, StateProps } from "../../../types";
+import { Product, StateProps } from "../../../types";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const OrderDetails = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   useEffect(() => {
     let amt = 0;
-    orderData?.order?.map((item: Products) => {
+    orderData?.order?.map((item: Product) => {
       amt += item.price * item.quantity;
       return;
     });
@@ -32,7 +32,7 @@ const OrderDetails = () => {
             <p className="flex items-center justify-center">Amount</p>
           </div>
           <div className="py-2 flex flex-col justify-center gap-2">
-            {orderData?.order?.map((item: Products) => (
+            {orderData?.order?.map((item: Product) => (
               <div
                 key={item?._id}
                 className="py-2 border-b-[1px] border-gray-300 grid grid-cols-7 items-center"

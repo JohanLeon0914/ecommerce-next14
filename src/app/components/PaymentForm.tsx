@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Products, StateProps } from "../../../types";
+import { Product, StateProps } from "../../../types";
 import FormattedPrice from "./FormattedPrice";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSession } from "next-auth/react";
@@ -15,7 +15,7 @@ const PaymentForm = () => {
   const [totalAmt, setTotalAmt] = useState(0);
   useEffect(() => {
     let amt = 0;
-    productData.map((item: Products) => {
+    productData.map((item: Product) => {
       amt += item.price * item.quantity;
       return;
     });
