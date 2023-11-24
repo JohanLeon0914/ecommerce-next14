@@ -64,7 +64,7 @@ const SliderCategory = ({ products }: Props) => {
       <div className="relative">
         <Slider {...settings}>
           {products.map((product: Product) => (
-            <div key={product.id}>
+            <div key={product._id}>
               <ProductsData item={product} />
             </div>
           ))}
