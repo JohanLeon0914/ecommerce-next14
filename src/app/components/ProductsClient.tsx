@@ -36,9 +36,9 @@ const ProductsClient = ({ products }: Props) => {
             ))}
           </Container>
         ) : (
-            <div className="min-h-[400px] flex flex-col items-center justify-center gap-y-5">
+          <div className="min-h-[400px] flex flex-col items-center justify-center gap-y-5">
             <h2 className="text-4xl font-bold">
-              No results found for "{search}".
+              No results found for &quot;{search}&quot;.
             </h2>
             <div className="flex items-center gap-x-5">
               <button
