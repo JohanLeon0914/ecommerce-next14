@@ -93,7 +93,7 @@ function Header() {
             alt="user image"
             width={50}
             height={50}
-            className="rounded-full object-cover"
+            className="rounded-full object-cover h-10"
           />
         )}
 
@@ -102,7 +102,7 @@ function Header() {
           <div
             onClick={() => signOut()}
             className={`headerDiv ${
-              isMobile ? "flex items-center gap-x-1" : "px-2 gap-x-1"
+              isMobile ? "flex items-center gap-x-1 h-10" : "px-2 gap-x-1"
             } cursor-pointer`}
           >
             <FiLogOut className="text-2xl" />
