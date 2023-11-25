@@ -17,6 +17,7 @@ import { addSearch } from "@/redux/shoppingSlice";
 
 function Header() {
   const dispatch = useDispatch();
+  const { search } = useSelector((state: StateProps) => state.shopping);
   const { data: session } = useSession();
   const { productData } = useSelector((state: StateProps) => state.shopping);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -62,6 +63,7 @@ function Header() {
         <div className="w-full bg-white hidden md:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
           <FiSearch className="text-gray-500 group-focus-within:text-darkText duration-200" />
           <input
+            value={search}
             onChange={onChangeInput}
             type="text"
             placeholder="Search for products"
