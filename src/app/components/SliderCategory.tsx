@@ -1,5 +1,5 @@
 "use client";
-import { Product } from "../../../types";
+import { Product, StateProps } from "../../../types";
 import Slider from "react-slick";
 import { PiCaretLeftLight, PiCaretRightLight } from "react-icons/pi";
 import ProductsData from "./ProductsData";
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const SliderCategory = ({ products }: Props) => {
+
   const NextArrow = (props: any) => {
     const { onClick } = props;
     return (
@@ -43,16 +44,16 @@ const SliderCategory = ({ products }: Props) => {
     prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 1024, 
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 2, 
+          slidesToShow: 2,
           slidesToScroll: 2,
         },
       },
       {
-        breakpoint: 600, 
+        breakpoint: 600,
         settings: {
-          slidesToShow: 1, 
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -60,17 +61,15 @@ const SliderCategory = ({ products }: Props) => {
   };
 
   return (
-    <>
-      <div className="relative">
-        <Slider {...settings}>
-          {products.map((product: Product) => (
-            <div key={product._id}>
-              <ProductsData item={product} />
-            </div>
-          ))}
-        </Slider>
-      </div>
-    </>
+    <div className="relative">
+      <Slider {...settings}>
+        {products.map((product: Product) => (
+          <div key={product._id}>
+            <ProductsData item={product} />
+          </div>
+        ))}
+      </Slider>
+    </div>
   );
 };
 

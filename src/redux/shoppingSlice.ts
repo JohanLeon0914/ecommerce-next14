@@ -5,12 +5,14 @@ interface StoreState {
     productData: Product[];
     userInfo: null | string;
     orderData: [];
+    search: "";
 }
 
 const initialState: StoreState = {
     productData: [],
     userInfo: null,
-    orderData: []
+    orderData: [],
+    search: ""
 }
 
 export const shoppingSlice = createSlice({
@@ -63,6 +65,9 @@ export const shoppingSlice = createSlice({
         resetOrder: (state) => {
             state.orderData = [];
         },
+        addSearch: (state, action) => {
+            state.search = action.payload;
+        },
     }
 })
 
@@ -76,5 +81,6 @@ export const {
     deleteUser,
     saveOrder,
     resetOrder,
+    addSearch,
   } = shoppingSlice.actions;
 export default shoppingSlice.reducer;

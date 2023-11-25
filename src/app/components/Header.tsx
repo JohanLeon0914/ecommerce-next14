@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Container from "./Container";
 import Logo from "./Logo";
 import { IoMdCart } from "react-icons/io";
@@ -13,6 +13,7 @@ import FormattedPrice from "./FormattedPrice";
 import Link from "next/link";
 import { addUser, deleteUser } from "@/redux/shoppingSlice";
 import { useMediaQuery } from "react-responsive";
+import { addSearch } from "@/redux/shoppingSlice";
 
 function Header() {
   const dispatch = useDispatch();
@@ -49,6 +50,10 @@ function Header() {
     setTotalAmount(amt);
   }, [productData]);
 
+  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(addSearch(event.target.value));
+  };
+
   return (
     <div className="bg-bodyColor h-20 top-0 sticky z-50">
       <Container className="h-full flex items-center md:gap-x-5 justify-between md:justify-start">
@@ -57,6 +62,7 @@ function Header() {
         <div className="w-full bg-white hidden md:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
           <FiSearch className="text-gray-500 group-focus-within:text-darkText duration-200" />
           <input
+            onChange={onChangeInput}
             type="text"
             placeholder="Search for products"
             className="placeholder:text-sm flex-1 outline-none"

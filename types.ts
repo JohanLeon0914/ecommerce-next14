@@ -21,10 +21,11 @@ export interface Product {
   
   export interface StateProps {
     shopping: {
-      productData: [];
+      productData: Product[];
       userInfo: {};
       orderData: {
         order: Product[];
       };
+      search: "";
     };
   }
