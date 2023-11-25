@@ -56,8 +56,8 @@ function Header() {
   };
 
   return (
-    <div className="bg-bodyColor h-20 top-0 sticky z-50">
-      <Container className="h-full flex items-center md:gap-x-5 justify-between md:justify-start">
+    <div className="bg-bodyColor h-40 md:h-20 xl:h-20 top-0 sticky z-50">
+      <Container className="h-full flex md:items-center md:gap-x-5 justify-between md:justify-start">
         <Logo />
         {/* Search bar */}
         <div className="w-full bg-white hidden md:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
@@ -70,11 +70,12 @@ function Header() {
             className="placeholder:text-sm flex-1 outline-none"
           />
         </div>
+        
         {/* Login and register */}
         {!session && (
           <div
             onClick={() => signIn()}
-            className={`headerDiv cursor-pointer ${
+            className={`headerDiv h-10 cursor-pointer ${
               isMobile ? "flex items-center gap-x-1" : ""
             }`}
           >
@@ -139,6 +140,16 @@ function Header() {
           </div>
         </Link>
       </Container>
+      <div className="absolute top-20 mt-6 w-[90%] ml-5 bg-white md:hidden flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
+          <FiSearch className="text-gray-500 group-focus-within:text-darkText duration-200" />
+          <input
+            value={search}
+            onChange={onChangeInput}
+            type="text"
+            placeholder="Search for products"
+            className="placeholder:text-sm flex-1 outline-none"
+          />
+        </div>
     </div>
   );
 }
