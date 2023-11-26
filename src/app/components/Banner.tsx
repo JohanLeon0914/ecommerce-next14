@@ -6,8 +6,12 @@ import bannerthree from "@/images/bannerthree.jpg";
 import { PiCaretLeftLight, PiCaretRightLight } from "react-icons/pi";
 import Image from "next/image";
 import BannerText from "./BannerText";
+import { useSelector } from "react-redux";
+import { StateProps } from "../../../types";
 
 const Banner = () => {
+  const { search } = useSelector((state: StateProps) => state.shopping);
+
   const NextArrow = (props: any) => {
     const { onClick } = props;
     return (
@@ -43,34 +47,36 @@ const Banner = () => {
   };
   return (
     <div className="relative">
-      
-      <Slider {...settings}>
-        <div className="w-full h-full relative">
-          <Image
-            src={bannerone}
-            alt="bannerone"
-            className="w-full h-full relative"
-            priority
-          />
-          <BannerText title="Outware Picks" />
-        </div>
-        <div className="w-full h-full relative">
-          <Image
-            src={bannertwo}
-            alt="bannertwo"
-            className="w-full h-full relative"
-          />
-          <BannerText title="Seasonal Offers" />
-        </div>
-        <div className="w-full h-full relative">
-          <Image
-            src={bannerthree}
-            alt="bannerthree"
-            className="w-full h-full relative"
-          />
-          <BannerText title="Best for men" />
-        </div>
-      </Slider>
+      {!search && (
+        <Slider {...settings}>
+          <div className="w-full h-full relative">
+            <Image
+              src={bannerone}
+              alt="bannerone"
+              className="w-full h-full relative"
+              priority
+            />
+            <BannerText title="Outware Picks" />
+          </div>
+          <div className="w-full h-full relative">
+            <Image
+              src={bannertwo}
+              alt="bannertwo"
+              className="w-full h-full relative"
+            />
+            <BannerText title="Seasonal Offers" />
+          </div>
+          <div className="w-full h-full relative">
+            <Image
+              src={bannerthree}
+              alt="bannerthree"
+              className="w-full h-full relative"
+            />
+            <BannerText title="Best for men" />
+          </div>
+        </Slider>
+      )}
+
       {/* Difuminado */}
       <div className="absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
     </div>
